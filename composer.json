@@ -1,0 +1,43 @@
+{
+    "name": "codelabs/voyagerbreadbuilder",
+    "description": ":description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shawn Mayzes",
+            "email": "shawn@codelabs.ca",
+            "homepage": "https://codelabs.ca"
+        }
+    ],
+    "homepage": "https://github.com/codelabs/voyagerbreadbuilder",
+    "keywords": ["Laravel", "VoyagerBreadBuilder"],
+    "require": {
+        "php": "^7.1.3",
+        "illuminate/support": "~5",
+        "tcg/voyager": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Codelabs\\VoyagerBreadBuilder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Codelabs\\VoyagerBreadBuilder\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Codelabs\\VoyagerBreadBuilder\\VoyagerBreadBuilderServiceProvider"
+            ],
+            "aliases": {
+                "VoyagerBreadBuilder": "Codelabs\\VoyagerBreadBuilder\\Facades\\VoyagerBreadBuilder"
+            }
+        }
+    }
+}

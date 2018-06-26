@@ -1,0 +1,16 @@
+        $dataRow = $this->dataRow($dataType, '{{field}}');
+        if (! $dataRow->exists) {
+            $dataRow->fill([
+                'type'         => '{{type}}',
+                'display_name' => '{{display_name}}',
+                'required'     => {{required}},
+                'browse'       => {{browse}},
+                'read'         => {{read}},
+                'edit'         => {{edit}},
+                'add'          => {{add}},
+                'delete'       => {{delete}},
+                'details'      => '{{details}}',
+                'order'        => {{order}},
+            ])->save();
+        }
+

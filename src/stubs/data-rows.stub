@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\DataRow;
+use TCG\Voyager\Models\DataType;
+
+class {{class}} extends Seeder
+{
+    /**
+     * Auto generated seed file.
+     */
+    public function run()
+    {
+        $dataType = DataType::firstOrFail(['slug' => '{{name}}']);
+
+        {{data_rows}}
+    }
+
+    /**
+     * Get the data row from type and field.
+     *
+     * @param $type
+     * @param $field
+     *
+     * @return mixed
+     */
+    protected function dataRow($type, $field)
+    {
+        return DataRow::firstOrNew([
+            'data_type_id' => $type->id,
+            'field'        => $field,
+        ]);
+    }
+}

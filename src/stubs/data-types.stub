@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\DataType;
+
+class {{class}} extends Seeder
+{
+    /**
+     * Auto generated seed file.
+     */
+    public function run()
+    {
+        $dataType = DataType::firstOrNew(['slug' => '{{name}}']);
+        if (! $dataType->exists) {
+            $dataType->fill([
+                'name'                  => '{{name}}',
+                'display_name_singular' => '{{display_name_plural}}',
+                'display_name_plural'   => '{{display_name_singular}}',
+                'icon'                  => '{{icon}}',
+                'model_name'            => {{model_name}},
+                'policy_name'           => {{policy_name}},
+                'controller'            => {{controller}},
+                'description'           => '{{description}}',
+                'generate_permissions'  => {{generate_permissions}},
+                'server_side'           => {{server_side}},
+                'details'               => '{{details}}',
+            ])->save();
+        }
+    }
+}
