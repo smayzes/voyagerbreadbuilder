@@ -2,8 +2,8 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+<a href="https://styleci.io/repos/138692785/shield?style=flat"><img src="https://styleci.io/repos/138692785/shield?style=flat" alt="Build Status"></a>
+
 
 Laravel Voyager BREAD builder for existing data. The intention of this package is to make it easy to make seeders 
 for your [BREAD](https://voyager.readme.io/docs/bread).  
