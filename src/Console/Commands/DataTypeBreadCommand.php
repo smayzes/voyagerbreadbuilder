@@ -2,10 +2,10 @@
 
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
-use Illuminate\Console\GeneratorCommand;
 use TCG\Voyager\Models\DataType;
+use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class DataTypeBreadCommand extends GeneratorCommand
 {
@@ -47,7 +47,7 @@ class DataTypeBreadCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../stubs/data-types.stub';
+        return __DIR__.'/../../stubs/data-types.stub';
     }
 
     /**
@@ -121,11 +121,11 @@ class DataTypeBreadCommand extends GeneratorCommand
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return base_path() . '/database/seeds/' . str_replace('\\', '/', $name) . '/' . $this->getClassName() . '.php';
+        return base_path().'/database/seeds/'.str_replace('\\', '/', $name).'/'.$this->getClassName().'.php';
     }
 
     /**
-     * Return the class namespace or null
+     * Return the class namespace or null.
      *
      * @param $model_name
      *
@@ -134,10 +134,10 @@ class DataTypeBreadCommand extends GeneratorCommand
      */
     private function getReflectionClass($model_name): ?string
     {
-        if (!empty($model_name)) {
+        if (! empty($model_name)) {
             $class = new \ReflectionClass($model_name);
 
-            return $class->getName() . '::class';
+            return $class->getName().'::class';
         }
 
         return 'null';
