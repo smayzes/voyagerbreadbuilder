@@ -2,10 +2,10 @@
 
 namespace Codelabs\VoyagerBreadBuilder;
 
+use Illuminate\Support\ServiceProvider;
 use Codelabs\VoyagerBreadBuilder\Console\Commands\DataRowBreadCommand;
 use Codelabs\VoyagerBreadBuilder\Console\Commands\DataTypeBreadCommand;
 use Codelabs\VoyagerBreadBuilder\Console\Commands\PermissionBreadCommand;
-use Illuminate\Support\ServiceProvider;
 
 class VoyagerBreadBuilderServiceProvider extends ServiceProvider
 {
@@ -45,7 +45,7 @@ class VoyagerBreadBuilderServiceProvider extends ServiceProvider
             ], 'voyagerbreadbuilder.views');*/
 
             // Registering package commands.
-             $this->commands([
+            $this->commands([
                  DataTypeBreadCommand::class,
                  DataRowBreadCommand::class,
                  PermissionBreadCommand::class,

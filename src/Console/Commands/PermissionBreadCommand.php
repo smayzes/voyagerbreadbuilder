@@ -2,9 +2,9 @@
 
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class PermissionBreadCommand extends GeneratorCommand
 {
@@ -46,7 +46,7 @@ class PermissionBreadCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../stubs/permission.stub';
+        return __DIR__.'/../../stubs/permission.stub';
     }
 
     /**
@@ -75,6 +75,6 @@ class PermissionBreadCommand extends GeneratorCommand
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return base_path() . '/database/seeds/' . str_replace('\\', '/', $name) . '/' . $this->getClassName() . '.php';
+        return base_path().'/database/seeds/'.str_replace('\\', '/', $name).'/'.$this->getClassName().'.php';
     }
 }
