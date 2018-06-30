@@ -16,12 +16,33 @@ class VoyagerBreadBuilderServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'codelabs');
+        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'codelabs');
+        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
+
             // Publishing the configuration file.
             $this->publishes([
                 __DIR__.'/../config/voyagerbreadbuilder.php' => config_path('voyagerbreadbuilder.php'),
             ], 'voyagerbreadbuilder.config');
+
+            // Publishing the views.
+            /*$this->publishes([
+                __DIR__.'/../resources/views' => base_path('resources/views/vendor/codelabs'),
+            ], 'voyagerbreadbuilder.views');*/
+
+            // Publishing assets.
+            /*$this->publishes([
+                __DIR__.'/../resources/assets' => public_path('vendor/codelabs'),
+            ], 'voyagerbreadbuilder.views');*/
+
+            // Publishing the translation files.
+            /*$this->publishes([
+                __DIR__.'/../resources/lang' => resource_path('lang/vendor/codelabs'),
+            ], 'voyagerbreadbuilder.views');*/
 
             // Registering package commands.
             $this->commands([
