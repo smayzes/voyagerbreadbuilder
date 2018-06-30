@@ -2,10 +2,10 @@
 
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
-use Illuminate\Console\GeneratorCommand;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 use TCG\Voyager\Models\Permission;
+use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class PermissionBreadCommand extends GeneratorCommand
 {
