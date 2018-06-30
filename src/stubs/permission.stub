@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\Permission;
 
-class VoyagerPermissionSeeder extends Seeder
+class {{class_name}} extends Seeder
 {
     /**
      * Auto generated seed file.

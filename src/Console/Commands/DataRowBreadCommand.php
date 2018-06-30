@@ -2,7 +2,6 @@
 
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
-use Illuminate\Support\Str;
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
 use Illuminate\Console\GeneratorCommand;
@@ -38,7 +37,7 @@ class DataRowBreadCommand extends GeneratorCommand
      */
     protected function getClassName(): string
     {
-        return 'VoyagerDataRowSeeder';
+        return $this->className = studly_case($this->getNameInput()).'VoyagerDataRowsSeeder';
     }
 
     /**
@@ -118,9 +117,7 @@ class DataRowBreadCommand extends GeneratorCommand
      */
     protected function getPath($name): string
     {
-        $name = Str::replaceFirst($this->rootNamespace(), '', $name);
-
-        return base_path().'/database/seeds/'.str_replace('\\', '/', $name).'/'.$this->getClassName().'.php';
+        return base_path().'/database/seeds/'.$this->getClassName().'.php';
     }
 
     /**
@@ -158,7 +155,7 @@ class DataRowBreadCommand extends GeneratorCommand
                 $dataRow->edit,
                 $dataRow->add,
                 $dataRow->delete,
-                $dataRow->details,
+                $dataRow->details ?? 'null',
                 $dataRow->order,
         ],
             $singleRowStub
