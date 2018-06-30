@@ -2,10 +2,10 @@
 
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
-use Illuminate\Console\GeneratorCommand;
 use TCG\Voyager\Models\DataType;
+use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class DataTypeBreadCommand extends GeneratorCommand
 {
@@ -125,7 +125,7 @@ class DataTypeBreadCommand extends GeneratorCommand
     }
 
     /**
-     * Return the class namespace or null
+     * Return the class namespace or null.
      *
      * @param $model_name
      *
@@ -134,7 +134,7 @@ class DataTypeBreadCommand extends GeneratorCommand
      */
     private function getReflectionClass($model_name): ?string
     {
-        if (!empty($model_name)) {
+        if (! empty($model_name)) {
             $class = new \ReflectionClass($model_name);
 
             return $class->getName().'::class';

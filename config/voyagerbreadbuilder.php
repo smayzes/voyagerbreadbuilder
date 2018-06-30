@@ -3,5 +3,5 @@
 return [
     'paths' => [
         'seeds' => '/database/seeds',
-    ]
+    ],
 ];

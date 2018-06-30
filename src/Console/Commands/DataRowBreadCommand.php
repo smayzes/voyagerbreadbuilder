@@ -2,11 +2,11 @@
 
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
-use Illuminate\Console\GeneratorCommand;
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
+use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class DataRowBreadCommand extends GeneratorCommand
 {
@@ -124,7 +124,7 @@ class DataRowBreadCommand extends GeneratorCommand
     }
 
     /**
-     * Get the single data row stubs
+     * Get the single data row stubs.
      *
      * @param DataRow $dataRow
      *
