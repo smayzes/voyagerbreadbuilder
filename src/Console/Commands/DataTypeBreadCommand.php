@@ -57,6 +57,7 @@ class DataTypeBreadCommand extends GeneratorCommand
      *
      * @return string
      * @throws FileNotFoundException
+     * @throws \ReflectionException
      */
     protected function buildClass($name = null): string
     {
@@ -67,12 +68,13 @@ class DataTypeBreadCommand extends GeneratorCommand
     }
 
     /**
-     * Replace the data attributes name for the given stub.
+     * Replace the data attributes for the given stub.
      *
      * @param  string $stub
      * @param DataType $dataType
      *
      * @return string
+     * @throws \ReflectionException
      */
     protected function replaceAttributes($stub, DataType $dataType): string
     {

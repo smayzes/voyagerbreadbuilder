@@ -1,0 +1,8 @@
+        $permission = $this->permissionRow('{{key}}', '{{table_name}}');
+        if (! $permission->exists) {
+            $permission->fill([
+                'key' => '{{key}}',
+                'table_name' => '{{table_name}}',
+                'permission_group_id' => {{permission_group_id}},
+            ])->save();
+        }
