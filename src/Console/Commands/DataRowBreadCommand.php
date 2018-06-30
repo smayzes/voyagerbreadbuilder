@@ -48,7 +48,7 @@ class DataRowBreadCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../stubs/data-rows.stub';
+        return __DIR__.'/../../stubs/data-rows.stub';
     }
 
     /**
@@ -58,7 +58,7 @@ class DataRowBreadCommand extends GeneratorCommand
      */
     protected function getSingleRowStub()
     {
-        return __DIR__ . '/../../stubs/data-rows-single.stub';
+        return __DIR__.'/../../stubs/data-rows-single.stub';
     }
 
     /**
@@ -120,7 +120,7 @@ class DataRowBreadCommand extends GeneratorCommand
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return base_path() . '/database/seeds/' . str_replace('\\', '/', $name) . '/' . $this->getClassName() . '.php';
+        return base_path().config('voyagerbreadbuilder.paths.seeds').str_replace('\\', '/', $name).'/'.$this->getClassName().'.php';
     }
 
     /**

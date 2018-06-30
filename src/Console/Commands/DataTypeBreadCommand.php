@@ -47,7 +47,7 @@ class DataTypeBreadCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../stubs/data-types.stub';
+        return __DIR__.'/../../stubs/data-types.stub';
     }
 
     /**
@@ -121,7 +121,7 @@ class DataTypeBreadCommand extends GeneratorCommand
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return base_path() . '/database/seeds/' . str_replace('\\', '/', $name) . '/' . $this->getClassName() . '.php';
+        return base_path().config('voyagerbreadbuilder.paths.seeds').str_replace('\\', '/', $name).'/'.$this->getClassName().'.php';
     }
 
     /**
@@ -137,7 +137,7 @@ class DataTypeBreadCommand extends GeneratorCommand
         if (!empty($model_name)) {
             $class = new \ReflectionClass($model_name);
 
-            return $class->getName() . '::class';
+            return $class->getName().'::class';
         }
 
         return 'null';
