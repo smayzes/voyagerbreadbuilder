@@ -5,6 +5,7 @@ namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use TCG\Voyager\Models\Permission;
 
 class PermissionBreadCommand extends GeneratorCommand
 {
@@ -50,6 +51,16 @@ class PermissionBreadCommand extends GeneratorCommand
     }
 
     /**
+     * Get the single row stub file for the generator.
+     *
+     * @return string
+     */
+    protected function getSingleRowStub()
+    {
+        return __DIR__.'/../../stubs/permission-rows-single.stub';
+    }
+
+    /**
      * Build the class with the given name.
      *
      * @param  string $name
@@ -61,7 +72,7 @@ class PermissionBreadCommand extends GeneratorCommand
     {
         $stub = $this->files->get($this->getStub());
 
-        return str_replace('{{name}}', $this->getNameInput(), $stub);
+        return $this->replaceAttributes($stub, $this->getNameInput());
     }
 
     /**
@@ -76,5 +87,57 @@ class PermissionBreadCommand extends GeneratorCommand
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
         return base_path().'/database/seeds/'.str_replace('\\', '/', $name).'/'.$this->getClassName().'.php';
+    }
+
+    /**
+     * Replace the permission attributes for the given stub.
+     *
+     * @param $stub
+     * @param $name
+     *
+     * @return mixed
+     * @throws FileNotFoundException
+     */
+    private function replaceAttributes($stub, $name)
+    {
+        $permissionOutput = null;
+        foreach (Permission::where('table_name', $name)->get() as $permission) {
+            $permissionOutput .= $this->getPermissionRows($permission);
+        }
+
+        return str_replace(
+            [
+                '{{permissions}}',
+            ], [
+                $permissionOutput,
+            ],
+            $stub
+        );
+    }
+
+    /**
+     * Get the single permission row stubs.
+     *
+     * @param $permission
+     *
+     * @return mixed
+     * @throws FileNotFoundException
+     */
+    private function getPermissionRows($permission)
+    {
+        $singleRowStub = $this->files->get($this->getSingleRowStub());
+
+        return str_replace(
+            [
+                '{{key}}',
+                '{{table_name}}',
+                '{{permission_group_id}}',
+            ], [
+                $permission->key,
+                $permission->table_name,
+                $permission->permission_group_id ?? 'null',
+            ],
+            $singleRowStub
+        );
     }
 }

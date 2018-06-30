@@ -10,6 +10,22 @@ class VoyagerPermissionSeeder extends Seeder
      */
     public function run()
     {
-        Permission::generateFor('{{name}}');
+        {{permissions}}
+    }
+
+    /**
+     * Get the permission row from table_name and key.
+     *
+     * @param $key
+     * @param $tableName
+     *
+     * @return mixed
+     */
+    protected function permissionRow($key, $tableName)
+    {
+        return Permission::firstOrNew([
+            'key' => $key,
+            'tableName' => $tableName,
+        ]);
     }
 }
