@@ -2,7 +2,6 @@
 
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
-use Illuminate\Support\Str;
 use TCG\Voyager\Models\DataType;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
@@ -37,7 +36,7 @@ class DataTypeBreadCommand extends GeneratorCommand
      */
     protected function getClassName(): string
     {
-        return 'VoyagerDataTypesSeeder';
+        return $this->className = studly_case($this->getNameInput()).'VoyagerDataTypesSeeder';
     }
 
     /**
@@ -121,9 +120,7 @@ class DataTypeBreadCommand extends GeneratorCommand
      */
     protected function getPath($name): string
     {
-        $name = Str::replaceFirst($this->rootNamespace(), '', $name);
-
-        return base_path().'/database/seeds/'.str_replace('\\', '/', $name).'/'.$this->getClassName().'.php';
+        return base_path().'/database/seeds/'.$this->getClassName().'.php';
     }
 
     /**

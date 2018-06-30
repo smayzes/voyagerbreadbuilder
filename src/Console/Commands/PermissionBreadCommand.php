@@ -30,14 +30,19 @@ class PermissionBreadCommand extends GeneratorCommand
      */
     protected $type = 'Seed';
 
+    /** @var $className */
+    private $className;
+
     /**
      * Get the class name from name input.
      *
+     * @param $name
+     *
      * @return string
      */
-    protected function getClassName(): string
+    protected function getClassName($name): string
     {
-        return 'VoyagerPermissionSeeder';
+        return $this->className = studly_case($name).'VoyagerPermissionSeeder';
     }
 
     /**
@@ -84,9 +89,9 @@ class PermissionBreadCommand extends GeneratorCommand
      */
     protected function getPath($name): string
     {
-        $name = Str::replaceFirst($this->rootNamespace(), '', $name);
+        $name = str_replace('\\', '/', Str::replaceFirst($this->rootNamespace(), '', $name));
 
-        return base_path().'/database/seeds/'.str_replace('\\', '/', $name).'/'.$this->getClassName().'.php';
+        return base_path().'/database/seeds/'.$this->getClassName($name).'.php';
     }
 
     /**
@@ -107,8 +112,10 @@ class PermissionBreadCommand extends GeneratorCommand
 
         return str_replace(
             [
+                '{{class_name}}',
                 '{{permissions}}',
             ], [
+                $this->className,
                 $permissionOutput,
             ],
             $stub
