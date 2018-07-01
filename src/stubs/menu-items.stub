@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\Menu;
+use TCG\Voyager\Models\MenuItem;
+
+class {{class_name}} extends Seeder
+{
+    /**
+     * Auto generated seed file.
+     */
+    public function run()
+    {
+        $menu = Menu::firstOrFail(['name' => '{{name}}']);
+
+        {{menu_item_rows}}
+    }
+
+    /**
+     * Get the menu item from menu_id and title.
+     *
+     * @param $menuId
+     * @param $title
+     *
+     * @return mixed
+     */
+    protected function menuItemRow($menuId, $title)
+    {
+        return MenuItem::firstOrNew([
+            'menu_id' => $menuId,
+            'title' => $title,
+        ]);
+    }
+}
