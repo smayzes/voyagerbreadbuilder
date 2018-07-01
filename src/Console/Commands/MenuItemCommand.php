@@ -165,7 +165,7 @@ class MenuItemCommand extends GeneratorCommand
     }
 
     /**
-     * Determine if this should be null, string or integer
+     * Determine if this should be null, string or integer.
      *
      * @param $value
      *
