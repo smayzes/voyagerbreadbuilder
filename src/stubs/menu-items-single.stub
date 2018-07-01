@@ -1,0 +1,14 @@
+        $menuItem = $this->menuItemRow($menu->id, '{{title}}');
+        if (! $menuItem->exists) {
+            $menuItem->fill([
+                'url'         => {{url}},
+                'target'      => {{target}},
+                'icon_class'  => {{icon_class}},
+                'color'       => {{color}},
+                'parent_id'   => {{parent_id}},
+                'order'       => {{order}},
+                'route'       => {{route}},
+                'parameters'  => {{parameters}},
+            ])->save();
+        }
+

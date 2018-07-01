@@ -3,6 +3,7 @@
 namespace Codelabs\VoyagerBreadBuilder;
 
 use Illuminate\Support\ServiceProvider;
+use Codelabs\VoyagerBreadBuilder\Console\Commands\MenuItemCommand;
 use Codelabs\VoyagerBreadBuilder\Console\Commands\DataRowBreadCommand;
 use Codelabs\VoyagerBreadBuilder\Console\Commands\DataTypeBreadCommand;
 use Codelabs\VoyagerBreadBuilder\Console\Commands\PermissionBreadCommand;
@@ -29,7 +30,8 @@ class VoyagerBreadBuilderServiceProvider extends ServiceProvider
                  DataTypeBreadCommand::class,
                  DataRowBreadCommand::class,
                  PermissionBreadCommand::class,
-             ]);
+                 MenuItemCommand::class,
+            ]);
         }
     }
 
