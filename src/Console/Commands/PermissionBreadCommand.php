@@ -2,12 +2,10 @@
 
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
-use Illuminate\Support\Str;
 use TCG\Voyager\Models\Permission;
-use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-class PermissionBreadCommand extends GeneratorCommand
+class PermissionBreadCommand extends BaseBreadCommand
 {
     /**
      * The console command name.
@@ -36,13 +34,11 @@ class PermissionBreadCommand extends GeneratorCommand
     /**
      * Get the class name from name input.
      *
-     * @param $name
-     *
      * @return string
      */
-    protected function getClassName($name): string
+    protected function getClassName(): string
     {
-        return $this->className = studly_case($name).'VoyagerPermissionSeeder';
+        return $this->className = studly_case($this->getNameInput()).'VoyagerPermissionSeeder';
     }
 
     /**
@@ -78,20 +74,6 @@ class PermissionBreadCommand extends GeneratorCommand
         $stub = $this->files->get($this->getStub());
 
         return $this->replaceAttributes($stub, $this->getNameInput());
-    }
-
-    /**
-     * Get the destination class path.
-     *
-     * @param  string $name
-     *
-     * @return string
-     */
-    protected function getPath($name): string
-    {
-        $name = str_replace('\\', '/', Str::replaceFirst($this->rootNamespace(), '', $name));
-
-        return base_path().'/database/seeds/'.$this->getClassName($name).'.php';
     }
 
     /**
@@ -140,9 +122,9 @@ class PermissionBreadCommand extends GeneratorCommand
                 '{{table_name}}',
                 '{{permission_group_id}}',
             ], [
-                $permission->key,
-                $permission->table_name,
-                $permission->permission_group_id ?? 'null',
+                $this->nullify($permission->key),
+                $this->nullify($permission->table_name),
+                $this->nullify($permission->permission_group_id),
             ],
             $singleRowStub
         );

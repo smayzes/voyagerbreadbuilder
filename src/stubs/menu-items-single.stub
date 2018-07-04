@@ -1,4 +1,4 @@
-        $menuItem = $this->menuItemRow($menu->id, '{{title}}');
+        $menuItem = $this->menuItemRow($menu->id, {{title}});
         if (! $menuItem->exists) {
             $menuItem->fill([
                 'url'         => {{url}},

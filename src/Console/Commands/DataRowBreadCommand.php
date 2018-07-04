@@ -4,10 +4,9 @@ namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
-use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-class DataRowBreadCommand extends GeneratorCommand
+class DataRowBreadCommand extends BaseBreadCommand
 {
     /**
      * The console command name.
@@ -101,23 +100,11 @@ class DataRowBreadCommand extends GeneratorCommand
             ], [
             $this->getClassName(),
             $this->getNameInput(),
-            $dataRow->field,
+            $this->nullify($dataRow->field),
             $dataRowsOutput,
         ],
             $stub
         );
-    }
-
-    /**
-     * Get the destination class path.
-     *
-     * @param  string $name
-     *
-     * @return string
-     */
-    protected function getPath($name): string
-    {
-        return base_path().'/database/seeds/'.$this->getClassName().'.php';
     }
 
     /**
@@ -146,17 +133,17 @@ class DataRowBreadCommand extends GeneratorCommand
                 '{{details}}',
                 '{{order}}',
             ], [
-                $dataRow->field,
-                $dataRow->type,
-                $dataRow->display_name,
-                $dataRow->required,
-                $dataRow->browse,
-                $dataRow->read,
-                $dataRow->edit,
-                $dataRow->add,
-                $dataRow->delete,
-                $dataRow->details ?? 'null',
-                $dataRow->order,
+                $this->nullify($dataRow->field),
+                $this->nullify($dataRow->type),
+                $this->nullify($dataRow->display_name),
+                $this->nullify($dataRow->required),
+                $this->nullify($dataRow->browse),
+                $this->nullify($dataRow->read),
+                $this->nullify($dataRow->edit),
+                $this->nullify($dataRow->add),
+                $this->nullify($dataRow->delete),
+                $this->nullify($dataRow->details),
+                $this->nullify($dataRow->order),
         ],
             $singleRowStub
         );

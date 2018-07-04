@@ -5,10 +5,9 @@ namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 use Illuminate\Support\Str;
 use TCG\Voyager\Models\Menu;
 use TCG\Voyager\Models\MenuItem;
-use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-class MenuItemCommand extends GeneratorCommand
+class MenuItemCommand extends BaseBreadCommand
 {
     /**
      * The console command name.
@@ -115,9 +114,11 @@ class MenuItemCommand extends GeneratorCommand
         return str_replace(
             [
                 '{{class_name}}',
+                '{{name}}',
                 '{{menu_item_rows}}',
             ], [
                 $this->className,
+                $this->getNameInput(),
                 $menuItemOutput,
             ],
             $stub
@@ -150,7 +151,7 @@ class MenuItemCommand extends GeneratorCommand
                 '{{parameters}}',
             ], [
                 $this->getNameInput(),
-                $menuItem->title,
+                $this->nullify($menuItem->title),
                 $this->nullify($menuItem->url),
                 $this->nullify($menuItem->target),
                 $this->nullify($menuItem->icon_class),
@@ -162,25 +163,5 @@ class MenuItemCommand extends GeneratorCommand
             ],
             $singleRowStub
         );
-    }
-
-    /**
-     * Determine if this should be null, string or integer.
-     *
-     * @param $value
-     *
-     * @return string
-     */
-    private function nullify($value)
-    {
-        if ($value === null) {
-            return 'null';
-        }
-
-        if (\is_string($value)) {
-            return "'".$value."'";
-        }
-
-        return $value;
     }
 }

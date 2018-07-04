@@ -3,10 +3,9 @@
 namespace Codelabs\VoyagerBreadBuilder\Console\Commands;
 
 use TCG\Voyager\Models\DataType;
-use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-class DataTypeBreadCommand extends GeneratorCommand
+class DataTypeBreadCommand extends BaseBreadCommand
 {
     /**
      * The console command name.
@@ -56,7 +55,6 @@ class DataTypeBreadCommand extends GeneratorCommand
      *
      * @return string
      * @throws FileNotFoundException
-     * @throws \ReflectionException
      */
     protected function buildClass($name = null): string
     {
@@ -73,7 +71,6 @@ class DataTypeBreadCommand extends GeneratorCommand
      * @param DataType $dataType
      *
      * @return string
-     * @throws \ReflectionException
      */
     protected function replaceAttributes($stub, DataType $dataType): string
     {
@@ -94,51 +91,20 @@ class DataTypeBreadCommand extends GeneratorCommand
                 '{{details}}',
             ], [
                 $this->getClassName(),
-                $dataType->name,
-                $dataType->slug,
-                $dataType->display_name_singular,
-                $dataType->display_name_plural,
-                $dataType->icon,
-                $this->getReflectionClass($dataType->model_name),
-                $this->getReflectionClass($dataType->policy_name),
-                $this->getReflectionClass($dataType->controller),
-                $dataType->description,
-                $dataType->generate_permissions,
-                $dataType->server_side,
-                $dataType->details,
+                $this->nullify($dataType->name),
+                $this->nullify($dataType->slug),
+                $this->nullify($dataType->display_name_singular),
+                $this->nullify($dataType->display_name_plural),
+                $this->nullify($dataType->icon),
+                $this->nullify($dataType->model_name),
+                $this->nullify($dataType->policy_name),
+                $this->nullify($dataType->controller),
+                $this->nullify($dataType->description),
+                $this->nullify($dataType->generate_permissions),
+                $this->nullify($dataType->server_side),
+                $this->nullify($dataType->details),
             ],
             $stub
         );
-    }
-
-    /**
-     * Get the destination class path.
-     *
-     * @param  string $name
-     *
-     * @return string
-     */
-    protected function getPath($name): string
-    {
-        return base_path().'/database/seeds/'.$this->getClassName().'.php';
-    }
-
-    /**
-     * Return the class namespace or null.
-     *
-     * @param $model_name
-     *
-     * @return null|string
-     * @throws \ReflectionException
-     */
-    private function getReflectionClass($model_name): ?string
-    {
-        if (! empty($model_name)) {
-            $class = new \ReflectionClass($model_name);
-
-            return $class->getName().'::class';
-        }
-
-        return 'null';
     }
 }
