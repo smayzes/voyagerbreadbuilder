@@ -102,7 +102,7 @@ class DataTypeBreadCommand extends BaseBreadCommand
                 $this->nullify($dataType->description),
                 $this->nullify($dataType->generate_permissions),
                 $this->nullify($dataType->server_side),
-                $this->nullify($dataType->details),
+                $dataType->details,
             ],
             $stub
         );
